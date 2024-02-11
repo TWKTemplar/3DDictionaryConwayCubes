@@ -41,7 +41,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     public void SpawnRandom()
     {
        int count = Random.Range(1, 10);
-        int size = 5 + (int)(data.CubesStates.Count * 0.1f);
+        int size = 5 + (int)(data.Cubes.Count * 0.1f);
         for (int i = 0; i < count; i++)
         {
             data.SetCube(new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size)), true);

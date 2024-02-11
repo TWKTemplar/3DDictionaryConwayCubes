@@ -5,35 +5,34 @@ using UnityEngine;
 public class DictionaryConwayCubesData : MonoBehaviour
 {
 
-    public Dictionary<Vector3, bool> CubesStates = new Dictionary<Vector3, bool>();
+    public Dictionary<Vector3, bool> Cubes = new Dictionary<Vector3, bool>();
     public List<Vector3> EnabledCubes = new List<Vector3>();
-    public Dictionary<Vector3, bool> CachedCubesStates = new Dictionary<Vector3, bool>();
     public Dictionary<Vector3, int> CubesActiveNeighborCount = new Dictionary<Vector3, int>();
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
     public bool GetCube(Vector3 cube)
     {
-        if (!CubesStates.ContainsKey(cube)) CubesStates.Add(cube, false);
-        return CubesStates[cube];
+        if (!Cubes.ContainsKey(cube)) Cubes.Add(cube, false);
+        return Cubes[cube];
     }
     public void SetCube(Vector3 cube, bool state)
     {
-        if (!CubesStates.ContainsKey(cube)) CubesStates.Add(cube, state);
-        CubesStates[cube] = state;
+        if (!Cubes.ContainsKey(cube)) Cubes.Add(cube, state);
+        Cubes[cube] = state;
     }
     public void RemoveCubeFromDictionary(Vector3 cube)
     {
-        CubesStates.Remove(cube);
+        Cubes.Remove(cube);
     }
     public void ClearDictionary()
     {
-        CubesStates.Clear();
+        Cubes.Clear();
     }
     public void CalculateBounds()
     {
-        if (CubesStates.Count != 0)
+        if (Cubes.Count != 0)
         {
-            foreach (var val in CubesStates)
+            foreach (var val in Cubes)
             {
                 Bounds[0].x = Mathf.Min(Bounds[0].x, val.Key.x);
                 Bounds[0].y = Mathf.Min(Bounds[0].y, val.Key.y);
@@ -56,9 +55,9 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public List<Vector3> GetEnabledCubes()
     {
         List<Vector3> enabledCubes = new List<Vector3>();
-        if(CubesStates.Count != 0)
+        if(Cubes.Count != 0)
         {
-            foreach (var val in CubesStates)
+            foreach (var val in Cubes)
             {
                 enabledCubes.Add(val.Key);
             }
@@ -67,7 +66,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     }
     public Vector3[] GetNeighbors(Vector3 cube)
     {
-        Vector3[] n = new Vector3[26];
+        Vector3[] n = new Vector3[26];//9+8+9
         Vector3 vec = Vector3.zero;
         //Version 1
         int i = 0;
