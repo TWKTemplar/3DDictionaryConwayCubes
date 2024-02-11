@@ -19,6 +19,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         Cubes.Clear();
         //Clone ActiveCubes to Cubes
+        if (ActiveCubes.Count > 50000) return;
         if (ActiveCubes.Count != 0)
         {
             foreach (var cubePair in ActiveCubes)

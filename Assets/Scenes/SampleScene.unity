@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 1724338623}
+  GizmosDrawCubes: 1
   ShowDebug: 0
 --- !u!114 &1724338625
 MonoBehaviour:
@@ -381,7 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dictionaryConwayCubes: {fileID: 1724338624}
-  MaxTimer: 3
+  RunTimer: 0
+  MaxTimer: 1
   tempTimer: 0
 --- !u!1 &1815743213
 GameObject:
