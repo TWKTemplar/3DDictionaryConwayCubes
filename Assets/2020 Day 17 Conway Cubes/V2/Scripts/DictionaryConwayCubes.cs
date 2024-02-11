@@ -27,12 +27,19 @@ public class DictionaryConwayCubes : MonoBehaviour
         if (data == null) data = FindObjectOfType<DictionaryConwayCubesData>();
     }
     #endregion
+    [Header("Colors")]
+    public Color StartingColor = Color.white;
+    public Color EndingColor = Color.red;
+
     [Header("Settings")]
     public int GameOfLifeSurviveValue = 4;
+    public int MaxCubes = 50000;
     public bool GizmosDrawCubes = true;
     public bool ShowDebug = true;
     public bool ShowBounds = true;
     public bool MoveEmptyToBounds = false;
+    [Header("Random Spawn Settings")]
+    [Range(5,25)]public int RandomSpawnRange = 5;
 
     public void Step()
     {
@@ -42,7 +49,7 @@ public class DictionaryConwayCubes : MonoBehaviour
         }
         else
         {
-            data.ApplyRulesToSpawnCubesInto(GameOfLifeSurviveValue);
+            data.ApplyRulesToSpawnCubesInto(GameOfLifeSurviveValue, MaxCubes);
             OnDictionaryChange();
         }
     }
@@ -57,7 +64,7 @@ public class DictionaryConwayCubes : MonoBehaviour
         
         for (int i = 0; i < count; i++)
         {
-            int size = 5 + (int)(data.Cubes.Count * 0.05f);
+            int size = RandomSpawnRange + (int)(data.Cubes.Count * 0.05f);
             Vector3 randomVector = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
             data.SetCube(randomVector);
         }
@@ -80,8 +87,11 @@ public class DictionaryConwayCubes : MonoBehaviour
         if (data.Cubes.Count > 0)
         {
             #region Render Cubes
-            Gizmos.color = Color.white;
+            float lerp = ((data.NumberOfCubes / (float)MaxCubes)-0.5f)*2;
+            Gizmos.color = Color.Lerp(StartingColor, EndingColor, Mathf.Clamp(lerp, 0,1)) ;
+
             if(GizmosDrawCubes) foreach (Vector3 cub in data.Cubes) Gizmos.DrawCube(cub, Vector3.one);
+            Gizmos.color = Color.white;
             if(ShowDebug) foreach (var keyPair in data.ActiveCubes) DrawNumber(keyPair.Key, keyPair.Value);
 
             #endregion

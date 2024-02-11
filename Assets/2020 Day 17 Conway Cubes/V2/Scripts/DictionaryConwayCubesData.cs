@@ -5,16 +5,19 @@ using UnityEngine;
 public class DictionaryConwayCubesData : MonoBehaviour
 {
 
+    [Header("Debug Read Only")]
+    public int NumberOfCubes = 0;
+    [Header("Internal")]
     public HashSet<Vector3> Cubes = new HashSet<Vector3>();
     public Dictionary<Vector3, int> ActiveCubes = new Dictionary<Vector3, int>();
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
 
-    public void ApplyRulesToSpawnCubesInto(int gameOfLifeSurviveValue)
+    public void ApplyRulesToSpawnCubesInto(int gameOfLifeSurviveValue, int MaxCubes = 50000)
     {
         Cubes.Clear();
         //Clone ActiveCubes to Cubes
-        if (ActiveCubes.Count > 50000) return;
+        if (ActiveCubes.Count > MaxCubes) return;
         if (ActiveCubes.Count != 0)
         {
             foreach (var cubePair in ActiveCubes)
@@ -52,6 +55,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
                }
             }
         }
+        NumberOfCubes = ActiveCubes.Count;
     }
     public void SetCube(Vector3 cube)
     {
