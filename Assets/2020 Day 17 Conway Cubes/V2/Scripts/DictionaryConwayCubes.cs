@@ -31,6 +31,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     public int GameOfLifeSurviveValue = 4;
     public bool GizmosDrawCubes = true;
     public bool ShowDebug = true;
+    public bool ShowBounds = true;
     public bool MoveEmptyToBounds = false;
 
     public void Step()
@@ -65,7 +66,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     public void OnDictionaryChange()
     {
         data.CalculateActiveCubes();
-        data.CalculateBounds();
+        if(ShowBounds || MoveEmptyToBounds) data.CalculateBounds();
         if(MoveEmptyToBounds) MoveEmptyToCenterOfBounds();
         
     }
@@ -86,7 +87,7 @@ public class DictionaryConwayCubes : MonoBehaviour
             #endregion
             #region Render Bounds
             Gizmos.color = Color.green;
-            if (ShowDebug) Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
+            if (ShowBounds) Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
             #endregion
         }
     }

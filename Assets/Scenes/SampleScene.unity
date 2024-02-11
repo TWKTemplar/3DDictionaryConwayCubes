@@ -368,6 +368,7 @@ MonoBehaviour:
   GameOfLifeSurviveValue: 4
   GizmosDrawCubes: 1
   ShowDebug: 1
+  MoveEmptyToBounds: 0
 --- !u!114 &1724338625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,8 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dictionaryConwayCubes: {fileID: 1724338624}
-  RunTimer: 0
-  MaxTimer: 1
+  RunTimer: 1
+  MaxTimer: 0.25
   tempTimer: 0
 --- !u!1 &1815743213
 GameObject:
