@@ -28,6 +28,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     #endregion
     [Header("Settings")]
+    public bool GizmosDrawCubes = true;
     public bool ShowDebug = true;
 
     public void Step()
@@ -60,36 +61,20 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if (ShowDebug == false) return;
         if (data == null) return;
         if (data.Cubes.Count > 0)
         {
             #region Render Cubes
-                Gizmos.color = Color.white;
-            foreach (Vector3 cub in data.EnabledCubes)
-            {
-                Gizmos.DrawCube(cub, Vector3.one);
-            }
-            foreach (Vector3 cub in data.DisabledCubes)
-            {
-                Gizmos.DrawCube(cub, Vector3.one);
-            }
-            foreach (var keyPair in data.ActiveCubes)
-            {
-                DrawNumber(keyPair.Key, keyPair.Value);
-            }
+            Gizmos.color = Color.white;
+            if(GizmosDrawCubes) foreach (Vector3 cub in data.EnabledCubes) Gizmos.DrawCube(cub, Vector3.one);
+            if(ShowDebug) foreach (var keyPair in data.ActiveCubes) DrawNumber(keyPair.Key, keyPair.Value);
 
             #endregion
             #region Render Bounds
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
+            if (ShowDebug) Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
             #endregion
         }
-
-
-
-
-
     }
     private void DrawNumber(Vector3 pos, int num)
     {
