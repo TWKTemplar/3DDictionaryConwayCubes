@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d5eff06ed5e9d9843a1f5ce6f26974e8, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465829, g: 0.49641728, b: 0.57482105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 1724338624}
   - component: {fileID: 1724338623}
   m_Layer: 0
-  m_Name: V2
+  m_Name: DictionaryConwayCubes
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -346,21 +346,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81db802009a4843906fc7552598e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnabledCubes:
-  - {x: -2, y: -5, z: -1}
-  - {x: 0, y: 3, z: -1}
-  - {x: -4, y: 1, z: -3}
-  - {x: -5, y: 2, z: 0}
-  - {x: -1, y: 3, z: -4}
-  - {x: -5, y: -5, z: -5}
-  - {x: -3, y: 2, z: 0}
-  - {x: 4, y: -3, z: 2}
+  EnabledCubes: []
   DisabledCubes: []
   Bounds:
-  - {x: -5, y: -5, z: -5}
-  - {x: 4, y: 3, z: 2}
-  - {x: -0.5, y: -1, z: -1.5}
-  - {x: 9, y: 8, z: 7}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!114 &1724338624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +366,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 1724338623}
-  EnabledColor: {r: 1, g: 1, b: 1, a: 1}
-  EnabledTextColor: {r: 1, g: 1, b: 1, a: 1}
-  DisbledColor: {r: 0, g: 0, b: 0, a: 0.34117648}
-  DisbledTextColor: {r: 0, g: 0, b: 0, a: 0.03529412}
+--- !u!1 &1815743213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815743217}
+  - component: {fileID: 1815743216}
+  - component: {fileID: 1815743215}
+  - component: {fileID: 1815743214}
+  m_Layer: 0
+  m_Name: OldConwayCubesAttempt1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1815743214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815743213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9466bd8e0ced0204fa9fb6b2bd67f906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingColor: {r: 0, g: 1, b: 0, a: 1}
+  EndingColor: {r: 0, g: 0, b: 1, a: 1}
+  OnColor: {r: 1, g: 1, b: 1, a: 1}
+  OffColor: {r: 0, g: 0, b: 0, a: 0.08627451}
+--- !u!114 &1815743215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815743213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74585bde98e965b4faa911fa4becf0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cubes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  GridSize: 7
+--- !u!114 &1815743216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815743213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee8cdd01624e6e4e9a4d95f9c9138d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetCube: 0
+--- !u!4 &1815743217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815743213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

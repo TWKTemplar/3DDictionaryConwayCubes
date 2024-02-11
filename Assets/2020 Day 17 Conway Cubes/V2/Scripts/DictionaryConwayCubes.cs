@@ -43,7 +43,8 @@ public class DictionaryConwayCubes : MonoBehaviour
         int size = 5 + (int)(data.Cubes.Count * 0.1f);
         for (int i = 0; i < count; i++)
         {
-            data.SetCube(new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size)), true);
+            Vector3 randomVector = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
+            data.SetCube(randomVector, true);
         }
         OnDictionaryChange();
     }
