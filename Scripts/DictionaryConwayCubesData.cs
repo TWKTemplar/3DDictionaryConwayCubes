@@ -7,9 +7,41 @@ public class DictionaryConwayCubesData : MonoBehaviour
 
     public Dictionary<Vector3, bool> Cubes = new Dictionary<Vector3, bool>();
     public List<Vector3> EnabledCubes = new List<Vector3>();
-    public Dictionary<Vector3, int> CubesActiveNeighborCount = new Dictionary<Vector3, int>();
+    public List<Vector3> DisabledCubes = new List<Vector3>();
+
+    public Dictionary<Vector3, int> ActiveCubes = new Dictionary<Vector3, int>();
+    //dic of all cubes with more than 1 enabled cube around them
+
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
+    public void ResetActiveCubes()
+    {
+        ActiveCubes.Clear();
+    }
+    public void AddToActiveCubes(Vector3 cube)
+    {
+        if(ActiveCubes.ContainsKey(cube))
+        {
+            ActiveCubes[cube]++;
+        }
+        else
+        {
+            ActiveCubes.Add(cube, 1);
+        }
+    }
+    public void CalculateActiveCubes()
+    {
+        if (Cubes.Count != 0)
+        {
+            foreach (var cube in Cubes)
+            {
+               foreach(var cubeNeighbor  in GetNeighborsKeys(cube.Key))
+               {
+                    AddToActiveCubes(cubeNeighbor);
+               }
+            }
+        }
+    }
     public bool GetCube(Vector3 cube)
     {
         if (!Cubes.ContainsKey(cube)) Cubes.Add(cube, false);
@@ -24,7 +56,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         Cubes.Remove(cube);
     }
-    public void ClearDictionary()
+    public void ClearCubesDictionary()
     {
         Cubes.Clear();
     }
@@ -52,19 +84,20 @@ public class DictionaryConwayCubesData : MonoBehaviour
             Bounds[3] = Vector3.zero;
         }
     }
-    public List<Vector3> GetEnabledCubes()
+    public void CalcEnabledDisabledCubes()
     {
-        List<Vector3> enabledCubes = new List<Vector3>();
-        if(Cubes.Count != 0)
+        EnabledCubes.Clear();
+        DisabledCubes.Clear();
+        if (Cubes.Count != 0)
         {
             foreach (var val in Cubes)
             {
-                enabledCubes.Add(val.Key);
+                if(val.Value)EnabledCubes.Add(val.Key);
+                else DisabledCubes.Add(val.Key);
             }
         }
-        return enabledCubes;
     }
-    public Vector3[] GetNeighbors(Vector3 cube)
+    public Vector3[] GetNeighborsKeys(Vector3 cube)
     {
         Vector3[] n = new Vector3[26];//9+8+9
         Vector3 vec = Vector3.zero;

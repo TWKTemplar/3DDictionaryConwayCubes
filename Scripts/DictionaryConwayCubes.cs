@@ -29,13 +29,19 @@ public class DictionaryConwayCubes : MonoBehaviour
     #endregion
     //[Header("Settings")]
 
+    [Header("Settings Renderer")]
+    public Color EnabledColor = Color.white;
+    public Color EnabledTextColor = Color.white;
+    public Color DisbledColor = Color.white;
+    public Color DisbledTextColor = Color.white;
+
     public void Step()
     {
         OnDictionaryChange();
     }
     public void ClearDictionary()
     {
-        data.ClearDictionary();
+        data.ClearCubesDictionary();
         OnDictionaryChange();
     }
     public void SpawnRandom()
@@ -50,21 +56,30 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void OnDictionaryChange()
     {
+        data.CalcEnabledDisabledCubes();
         data.CalculateBounds();
     }
     private void OnDrawGizmos()
     {
         if (data == null) return;
-        List<Vector3> enabledCubes = new List<Vector3>();
-        enabledCubes = data.GetEnabledCubes();
-        if (enabledCubes.Count > 0)
+        if (data.Cubes.Count > 0)
         {
-            #region Render Enabled Cubes
-            Gizmos.color = Color.white;
-            foreach (Vector3 cub in enabledCubes)
+            #region Render Cubes
+            foreach (Vector3 cub in data.EnabledCubes)
             {
+                Gizmos.color = EnabledColor;
                 Gizmos.DrawCube(cub, Vector3.one);
+                Gizmos.color = EnabledTextColor;
+                DrawNumber(cub, 1);
             }
+            foreach (Vector3 cub in data.DisabledCubes)
+            {
+                Gizmos.color = DisbledColor;
+                Gizmos.DrawCube(cub, Vector3.one);
+                Gizmos.color = DisbledTextColor;
+                DrawNumber(cub, 1);
+            }
+
             #endregion
             #region Render Bounds
             Gizmos.color = Color.green;
@@ -72,7 +87,16 @@ public class DictionaryConwayCubes : MonoBehaviour
             #endregion
         }
 
+
+
+
+
+    }
+    private void DrawNumber(Vector3 pos, int num)
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawIcon(pos, num.ToString() + ".png", true);
     }
 
-    
+
 }
