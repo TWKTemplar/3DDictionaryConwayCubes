@@ -22,6 +22,10 @@ public class DictionaryConwayCubes : MonoBehaviour
 
     #region Hidden Refs
     public DictionaryConwayCubesData data;
+    private void OnValidate()
+    {
+        if (data == null) data = FindObjectOfType<DictionaryConwayCubesData>();
+    }
     #endregion
     //[Header("Settings")]
 
