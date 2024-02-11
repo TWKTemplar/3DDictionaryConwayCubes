@@ -67,7 +67,7 @@ public class DictionaryConwayCubes : MonoBehaviour
             #endregion
             #region Render Bounds
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]);//0 Min, 1 Max, 2 Average, 3 Range
+            Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
             #endregion
         }
 
