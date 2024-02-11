@@ -25,6 +25,10 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         CubesStates.Remove(cube);
     }
+    public void ClearDictionary()
+    {
+        CubesStates.Clear();
+    }
     public void CalculateBounds()
     {
         if (CubesStates.Count != 0)

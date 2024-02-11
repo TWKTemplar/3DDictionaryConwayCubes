@@ -35,6 +35,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void ClearDictionary()
     {
+        data.ClearDictionary();
         OnDictionaryChange();
     }
     public void SpawnRandom()
