@@ -5,12 +5,8 @@ using UnityEngine;
 public class DictionaryConwayCubesData : MonoBehaviour
 {
 
-    public Dictionary<Vector3, bool> Cubes = new Dictionary<Vector3, bool>();
-    public List<Vector3> EnabledCubes = new List<Vector3>();
-
+    public HashSet<Vector3> Cubes = new HashSet<Vector3>();
     public Dictionary<Vector3, int> ActiveCubes = new Dictionary<Vector3, int>();
-    //dic of all cubes with more than 1 enabled cube around them
-
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
 
@@ -25,7 +21,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
             {
                 if(cubePair.Value == 3)
                 {
-                    Cubes.Add(cubePair.Key, true);
+                    Cubes.Add(cubePair.Key);
                 }
             }
         }
@@ -50,22 +46,16 @@ public class DictionaryConwayCubesData : MonoBehaviour
         {
             foreach (var cube in Cubes)
             {
-               foreach(var cubeNeighbor  in GetNeighborsKeys(cube.Key))
+               foreach(var cubeNeighbor in GetNeighborsKeys(cube))
                {
                     AddToActiveCubes(cubeNeighbor);
                }
             }
         }
     }
-    public bool GetCube(Vector3 cube)
+    public void SetCube(Vector3 cube)
     {
-        if (!Cubes.ContainsKey(cube)) Cubes.Add(cube, false);
-        return Cubes[cube];
-    }
-    public void SetCube(Vector3 cube, bool state)
-    {
-        if (!Cubes.ContainsKey(cube)) Cubes.Add(cube, state);
-        Cubes[cube] = state;
+        if (!Cubes.Contains(cube)) Cubes.Add(cube);
     }
     public void RemoveCubeFromDictionary(Vector3 cube)
     {
@@ -81,12 +71,12 @@ public class DictionaryConwayCubesData : MonoBehaviour
         {
             foreach (var val in Cubes)
             {
-                Bounds[0].x = Mathf.Min(Bounds[0].x, val.Key.x);
-                Bounds[0].y = Mathf.Min(Bounds[0].y, val.Key.y);
-                Bounds[0].z = Mathf.Min(Bounds[0].z, val.Key.z);
-                Bounds[1].x = Mathf.Max(Bounds[1].x, val.Key.x);
-                Bounds[1].y = Mathf.Max(Bounds[1].y, val.Key.y);
-                Bounds[1].z = Mathf.Max(Bounds[1].z, val.Key.z);
+                Bounds[0].x = Mathf.Min(Bounds[0].x, val.x);
+                Bounds[0].y = Mathf.Min(Bounds[0].y, val.y);
+                Bounds[0].z = Mathf.Min(Bounds[0].z, val.z);
+                Bounds[1].x = Mathf.Max(Bounds[1].x, val.x);
+                Bounds[1].y = Mathf.Max(Bounds[1].y, val.y);
+                Bounds[1].z = Mathf.Max(Bounds[1].z, val.z);
             }
             Bounds[2] = AverageVector3(Bounds[0], Bounds[1]);
             Bounds[3] = RangeVector3(Bounds[0], Bounds[1]);
@@ -97,17 +87,6 @@ public class DictionaryConwayCubesData : MonoBehaviour
             Bounds[1] = Vector3.zero;
             Bounds[2] = Vector3.zero;
             Bounds[3] = Vector3.zero;
-        }
-    }
-    public void CalcEnabledDisabledCubes()
-    {
-        EnabledCubes.Clear();
-        if (Cubes.Count != 0)
-        {
-            foreach (var val in Cubes)
-            {
-                if(val.Value)EnabledCubes.Add(val.Key);
-            }
         }
     }
     public Vector3[] GetNeighborsKeys(Vector3 cube)
