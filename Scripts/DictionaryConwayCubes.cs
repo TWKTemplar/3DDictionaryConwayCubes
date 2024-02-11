@@ -56,6 +56,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void OnDictionaryChange()
     {
+        data.CalculateActiveCubes();
         data.CalcEnabledDisabledCubes();
         data.CalculateBounds();
     }
@@ -70,14 +71,19 @@ public class DictionaryConwayCubes : MonoBehaviour
                 Gizmos.color = EnabledColor;
                 Gizmos.DrawCube(cub, Vector3.one);
                 Gizmos.color = EnabledTextColor;
-                DrawNumber(cub, 1);
+                //DrawNumber(cub, 1);
             }
             foreach (Vector3 cub in data.DisabledCubes)
             {
                 Gizmos.color = DisbledColor;
                 Gizmos.DrawCube(cub, Vector3.one);
                 Gizmos.color = DisbledTextColor;
-                DrawNumber(cub, 1);
+                //DrawNumber(cub, 1);
+            }
+            foreach (var keyPair in data.ActiveCubes)
+            {
+                Gizmos.color = DisbledTextColor;
+                DrawNumber(keyPair.Key, keyPair.Value);
             }
 
             #endregion
