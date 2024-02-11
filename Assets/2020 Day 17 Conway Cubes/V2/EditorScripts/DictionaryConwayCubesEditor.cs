@@ -13,6 +13,10 @@ public class DictionaryConwayCubesEditor : Editor
         {
             DconwayCubes.Step();
         }
+        if (GUILayout.Button("On Dictionary Change"))
+        {
+            DconwayCubes.OnDictionaryChange();
+        }
         if (GUILayout.Button("Clear Dictionary"))
         {
             DconwayCubes.ClearDictionary();

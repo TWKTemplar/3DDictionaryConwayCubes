@@ -14,6 +14,24 @@ public class DictionaryConwayCubesData : MonoBehaviour
 
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
+
+    public void ApplyRulesToSpawnCubesInto()
+    {
+        Cubes.Clear();
+        //Clone ActiveCubes to Cubes
+        if (ActiveCubes.Count != 0)
+        {
+            foreach (var cubePair in ActiveCubes)
+            {
+                if(cubePair.Value == 3)
+                {
+                    Cubes.Add(cubePair.Key, true);
+                }
+            }
+        }
+
+    }
+
     public void AddToActiveCubes(Vector3 cube)
     {
         if(ActiveCubes.ContainsKey(cube))
@@ -96,7 +114,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     }
     public Vector3[] GetNeighborsKeys(Vector3 cube)
     {
-        Vector3[] n = new Vector3[26];//9+8+9
+        Vector3[] n = new Vector3[27];//9+9+9
         Vector3 vec = Vector3.zero;
         //Version 1
         int i = 0;
@@ -110,11 +128,8 @@ public class DictionaryConwayCubesData : MonoBehaviour
                     vec.x += x;
                     vec.y += y;
                     vec.z += z;
-                    if(vec != cube)
-                    {
-                        n[i] = vec;
-                        i++;
-                    }
+                    n[i] = vec;
+                    i++;
                 }
             }
         }

@@ -27,9 +27,12 @@ public class DictionaryConwayCubes : MonoBehaviour
         if (data == null) data = FindObjectOfType<DictionaryConwayCubesData>();
     }
     #endregion
+    [Header("Settings")]
+    public bool ShowDebug = true;
 
     public void Step()
     {
+        data.ApplyRulesToSpawnCubesInto();
         OnDictionaryChange();
     }
     public void ClearDictionary()
@@ -39,10 +42,11 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void SpawnRandom()
     {
-       int count = Random.Range(1, 10);
-        int size = 5 + (int)(data.Cubes.Count * 0.1f);
+       int count = Random.Range(30, 75);
+        
         for (int i = 0; i < count; i++)
         {
+            int size = 5 + (int)(data.Cubes.Count * 0.05f);
             Vector3 randomVector = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
             data.SetCube(randomVector, true);
         }
@@ -56,6 +60,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        if (ShowDebug == false) return;
         if (data == null) return;
         if (data.Cubes.Count > 0)
         {
