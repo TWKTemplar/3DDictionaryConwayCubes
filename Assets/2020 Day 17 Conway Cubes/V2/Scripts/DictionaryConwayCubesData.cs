@@ -7,7 +7,6 @@ public class DictionaryConwayCubesData : MonoBehaviour
 
     public Dictionary<Vector3, bool> Cubes = new Dictionary<Vector3, bool>();
     public List<Vector3> EnabledCubes = new List<Vector3>();
-    public List<Vector3> DisabledCubes = new List<Vector3>();
 
     public Dictionary<Vector3, int> ActiveCubes = new Dictionary<Vector3, int>();
     //dic of all cubes with more than 1 enabled cube around them
@@ -103,13 +102,11 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public void CalcEnabledDisabledCubes()
     {
         EnabledCubes.Clear();
-        DisabledCubes.Clear();
         if (Cubes.Count != 0)
         {
             foreach (var val in Cubes)
             {
                 if(val.Value)EnabledCubes.Add(val.Key);
-                else DisabledCubes.Add(val.Key);
             }
         }
     }
