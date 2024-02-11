@@ -27,13 +27,6 @@ public class DictionaryConwayCubes : MonoBehaviour
         if (data == null) data = FindObjectOfType<DictionaryConwayCubesData>();
     }
     #endregion
-    //[Header("Settings")]
-
-    [Header("Settings Renderer")]
-    public Color EnabledColor = Color.white;
-    public Color EnabledTextColor = Color.white;
-    public Color DisbledColor = Color.white;
-    public Color DisbledTextColor = Color.white;
 
     public void Step()
     {
@@ -66,23 +59,17 @@ public class DictionaryConwayCubes : MonoBehaviour
         if (data.Cubes.Count > 0)
         {
             #region Render Cubes
+                Gizmos.color = Color.white;
             foreach (Vector3 cub in data.EnabledCubes)
             {
-                Gizmos.color = EnabledColor;
                 Gizmos.DrawCube(cub, Vector3.one);
-                Gizmos.color = EnabledTextColor;
-                //DrawNumber(cub, 1);
             }
             foreach (Vector3 cub in data.DisabledCubes)
             {
-                Gizmos.color = DisbledColor;
                 Gizmos.DrawCube(cub, Vector3.one);
-                Gizmos.color = DisbledTextColor;
-                //DrawNumber(cub, 1);
             }
             foreach (var keyPair in data.ActiveCubes)
             {
-                Gizmos.color = DisbledTextColor;
                 DrawNumber(keyPair.Key, keyPair.Value);
             }
 

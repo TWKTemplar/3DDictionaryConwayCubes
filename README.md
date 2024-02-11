@@ -1,1 +1,2 @@
-# Just clone this repo into a unity project and toss all the scripts that dont have Editor at the end onto an empty. 
+#After cloning the repo the scripts for the project can be found in /2020 Day 17 Conway Cubes/V2/Scripts
+#Toss both of those scripts on an empty and it should just work :)
