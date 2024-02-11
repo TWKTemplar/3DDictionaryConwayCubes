@@ -28,13 +28,22 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     #endregion
     [Header("Settings")]
+    public int GameOfLifeSurviveValue = 4;
     public bool GizmosDrawCubes = true;
     public bool ShowDebug = true;
+    public bool MoveEmptyToBounds = false;
 
     public void Step()
     {
-        data.ApplyRulesToSpawnCubesInto();
-        OnDictionaryChange();
+        if (data.Cubes.Count == 0) 
+        {
+            SpawnRandom();
+        }
+        else
+        {
+            data.ApplyRulesToSpawnCubesInto(GameOfLifeSurviveValue);
+            OnDictionaryChange();
+        }
     }
     public void ClearDictionary()
     {
@@ -57,6 +66,12 @@ public class DictionaryConwayCubes : MonoBehaviour
     {
         data.CalculateActiveCubes();
         data.CalculateBounds();
+        if(MoveEmptyToBounds) MoveEmptyToCenterOfBounds();
+        
+    }
+    private void MoveEmptyToCenterOfBounds()
+    {
+        transform.position = data.Bounds[2];
     }
     private void OnDrawGizmos()
     {

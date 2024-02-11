@@ -347,8 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81db802009a4843906fc7552598e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnabledCubes: []
-  DisabledCubes: []
   Bounds:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -367,8 +365,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 1724338623}
+  GameOfLifeSurviveValue: 4
   GizmosDrawCubes: 1
-  ShowDebug: 0
+  ShowDebug: 1
 --- !u!114 &1724338625
 MonoBehaviour:
   m_ObjectHideFlags: 0

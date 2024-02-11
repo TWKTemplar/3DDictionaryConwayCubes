@@ -9,14 +9,6 @@ public class DictionaryConwayCubesEditor : Editor
     {
         DrawDefaultInspector();
         DictionaryConwayCubes DconwayCubes = (DictionaryConwayCubes)target; // Get reference to the target object
-        if (GUILayout.Button("Step"))
-        {
-            DconwayCubes.Step();
-        }
-        if (GUILayout.Button("On Dictionary Change"))
-        {
-            DconwayCubes.OnDictionaryChange();
-        }
         if (GUILayout.Button("Clear Dictionary"))
         {
             DconwayCubes.ClearDictionary();
@@ -24,6 +16,10 @@ public class DictionaryConwayCubesEditor : Editor
         if (GUILayout.Button("Spawn Random In Dictionary"))
         {
             DconwayCubes.SpawnRandom();
+        }
+        if (GUILayout.Button("Step"))
+        {
+            DconwayCubes.Step();
         }
     }
 }

@@ -10,7 +10,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
 
-    public void ApplyRulesToSpawnCubesInto()
+    public void ApplyRulesToSpawnCubesInto(int gameOfLifeSurviveValue)
     {
         Cubes.Clear();
         //Clone ActiveCubes to Cubes
@@ -19,7 +19,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
         {
             foreach (var cubePair in ActiveCubes)
             {
-                if(cubePair.Value == 3)
+                if(cubePair.Value == gameOfLifeSurviveValue)
                 {
                     Cubes.Add(cubePair.Key);
                 }
@@ -65,7 +65,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         Cubes.Clear();
     }
-    public void CalculateBounds()
+    public void CalculateBounds()// 0 Min, 1, Max, 2 Avg, 3 Range
     {
         if (Cubes.Count != 0)
         {
