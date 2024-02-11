@@ -40,10 +40,11 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void SpawnRandom()
     {
-       int count = Random.Range(1, 5);
+       int count = Random.Range(1, 10);
+        int size = 5 + (int)(data.CubesStates.Count * 0.1f);
         for (int i = 0; i < count; i++)
         {
-            data.SetCube(new Vector3(Random.Range(-5, 5),Random.Range(-5, 5),Random.Range(-5, 5)), true);
+            data.SetCube(new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size)), true);
         }
         OnDictionaryChange();
     }
