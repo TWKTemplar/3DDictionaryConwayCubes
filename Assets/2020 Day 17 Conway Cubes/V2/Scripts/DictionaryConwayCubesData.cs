@@ -13,46 +13,28 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
     //Only contains cubes with 1 true neighbor near them, including them.
 
-    public void ApplyRulesToSpawnCubesInto(int gameOfLifeSurviveValue, int MaxCubes = 50000)
+    public void ApplyRulesToCubes(int gameOfLifeSurviveValue, int MaxCubes = 50000)
     {
         Cubes.Clear();
-        //Clone ActiveCubes to Cubes
         if (ActiveCubes.Count > MaxCubes) return;
-        if (ActiveCubes.Count != 0)
+        if (ActiveCubes.Count == 0) return;
+        foreach (var cubePair in ActiveCubes)
         {
-            foreach (var cubePair in ActiveCubes)
-            {
-                if(cubePair.Value == gameOfLifeSurviveValue)
-                {
-                    Cubes.Add(cubePair.Key);
-                }
-            }
+            if(cubePair.Value == gameOfLifeSurviveValue) Cubes.Add(cubePair.Key);
         }
 
     }
 
-    public void AddToActiveCubes(Vector3 cube)
-    {
-        if(ActiveCubes.ContainsKey(cube))
-        {
-            ActiveCubes[cube]++;
-        }
-        else
-        {
-            ActiveCubes.Add(cube, 1);
-        }
-    }
     public void CalculateActiveCubes()
     {
         ActiveCubes.Clear();
-        if (Cubes.Count != 0)
+        if (Cubes.Count == 0) return;
+        foreach (var cube in Cubes)
         {
-            foreach (var cube in Cubes)
+            foreach (var cubeNeighbor in GetNeighborsKeys(cube))
             {
-               foreach(var cubeNeighbor in GetNeighborsKeys(cube))
-               {
-                    AddToActiveCubes(cubeNeighbor);
-               }
+                if (ActiveCubes.ContainsKey(cube)) ActiveCubes[cube]++;
+                else ActiveCubes.Add(cube, 1);
             }
         }
         NumberOfCubes = ActiveCubes.Count;
@@ -60,10 +42,6 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public void SetCube(Vector3 cube)
     {
         if (!Cubes.Contains(cube)) Cubes.Add(cube);
-    }
-    public void RemoveCubeFromDictionary(Vector3 cube)
-    {
-        Cubes.Remove(cube);
     }
     public void ClearCubesDictionary()
     {

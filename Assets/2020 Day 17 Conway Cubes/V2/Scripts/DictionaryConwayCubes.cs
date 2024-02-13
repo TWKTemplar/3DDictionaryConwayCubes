@@ -37,19 +37,15 @@ public class DictionaryConwayCubes : MonoBehaviour
     public bool GizmosDrawCubes = true;
     public bool ShowDebug = true;
     public bool ShowBounds = true;
-    public bool MoveEmptyToBounds = false;
     [Header("Random Spawn Settings")]
     [Range(5,25)]public int RandomSpawnRange = 5;
 
     public void Step()
     {
-        if (data.Cubes.Count == 0) 
-        {
-            SpawnRandom();
-        }
+        if (data.Cubes.Count == 0) SpawnRandom();
         else
         {
-            data.ApplyRulesToSpawnCubesInto(GameOfLifeSurviveValue, MaxCubes);
+            data.ApplyRulesToCubes(GameOfLifeSurviveValue, MaxCubes);
             OnDictionaryChange();
         }
     }
@@ -73,39 +69,29 @@ public class DictionaryConwayCubes : MonoBehaviour
     public void OnDictionaryChange()
     {
         data.CalculateActiveCubes();
-        if(ShowBounds || MoveEmptyToBounds) data.CalculateBounds();
-        if(MoveEmptyToBounds) MoveEmptyToCenterOfBounds();
-        
-    }
-    private void MoveEmptyToCenterOfBounds()
-    {
-        transform.position = data.Bounds[2];
+        if(ShowBounds) data.CalculateBounds();
     }
     private void OnDrawGizmos()
     {
-        if (data == null) return;
         if (data.Cubes.Count > 0)
         {
-            #region Render Cubes
-            float lerp = ((data.NumberOfCubes / (float)MaxCubes)-0.5f)*2;
-            Gizmos.color = Color.Lerp(StartingColor, EndingColor, Mathf.Clamp(lerp, 0,1)) ;
+            float lerpColor = ((data.NumberOfCubes / (float)MaxCubes)-0.5f)*2;
+            Gizmos.color = Color.Lerp(StartingColor, EndingColor, Mathf.Clamp(lerpColor, 0,1)) ;
 
             if(GizmosDrawCubes) foreach (Vector3 cub in data.Cubes) Gizmos.DrawCube(cub, Vector3.one);
             Gizmos.color = Color.white;
             if(ShowDebug) foreach (var keyPair in data.ActiveCubes) DrawNumber(keyPair.Key, keyPair.Value);
 
-            #endregion
-            #region Render Bounds
             Gizmos.color = Color.green;
-            if (ShowBounds) Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3]+(Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
-            #endregion
+            if (ShowBounds) RenderBounds();
         }
+    }
+    private void RenderBounds()
+    {
+        Gizmos.DrawWireCube(data.Bounds[2], data.Bounds[3] + (Vector3.one));//0 Min, 1 Max, 2 Average, 3 Range
     }
     private void DrawNumber(Vector3 pos, int num)
     {
-        Gizmos.color = Color.white;
         Gizmos.DrawIcon(pos, num.ToString() + ".png", true);
     }
-
-
 }
