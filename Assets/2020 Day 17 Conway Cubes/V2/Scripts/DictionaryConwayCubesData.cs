@@ -36,8 +36,8 @@ public class DictionaryConwayCubesData : MonoBehaviour
         {
             foreach (var cubeNeighbor in GetNeighborsKeys(cube))
             {
-                if (FertilityMap.ContainsKey(cube)) FertilityMap[cube]++;
-                else FertilityMap.Add(cube, 1);
+                if (FertilityMap.ContainsKey(cubeNeighbor)) FertilityMap[cubeNeighbor]++;
+                else FertilityMap.Add(cubeNeighbor, 1);
             }
         }
         NumberOfCubes = FertilityMap.Count;
