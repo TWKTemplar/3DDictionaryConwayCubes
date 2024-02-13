@@ -4,20 +4,7 @@ using UnityEngine;
 
 public class DictionaryConwayCubes : MonoBehaviour
 {
-    #region Steps
-    /// <summary>
-    /// Data sets CubesStates,CachedCubesStates,CubesActiveNeighborCount
-    /// Spawn randomcubes 
-    /// Calculate CubesActiveNeighborCount by looping through all cubes in CubesStates and getting their active neighbors and put the total in CubesActiveNeighborCount
-    ///  
-    /// 
-    /// for each pos in CubesActiveNeighborCount set the int
-    /// 
-    /// Clone CubesStates to CachedCubesStates 
-    /// 
-    /// 
-    /// </summary>
-        #endregion
+  
 
 
     #region Hidden Refs
@@ -80,7 +67,7 @@ public class DictionaryConwayCubes : MonoBehaviour
 
             if(GizmosDrawCubes) foreach (Vector3 cub in data.Cubes) Gizmos.DrawCube(cub, Vector3.one);
             Gizmos.color = Color.white;
-            if(ShowDebug) foreach (var keyPair in data.ActiveCubes) DrawNumber(keyPair.Key, keyPair.Value);
+            if(ShowDebug) foreach (var keyPair in data.FertilityMap) DrawNumber(keyPair.Key, keyPair.Value);
 
             Gizmos.color = Color.green;
             if (ShowBounds) RenderBounds();

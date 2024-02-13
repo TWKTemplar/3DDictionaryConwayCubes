@@ -9,16 +9,15 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public int NumberOfCubes = 0;
     [Header("Internal")]
     public HashSet<Vector3> Cubes = new HashSet<Vector3>();
-    public Dictionary<Vector3, int> ActiveCubes = new Dictionary<Vector3, int>();
+    public Dictionary<Vector3, int> FertilityMap = new Dictionary<Vector3, int>();
     public Vector3[] Bounds = new Vector3[4];//0 Min, 1 Max, 2 Average, 3 Range
-    //Only contains cubes with 1 true neighbor near them, including them.
 
     public void ApplyRulesToCubes(int gameOfLifeSurviveValue, int MaxCubes = 50000)
     {
         Cubes.Clear();
-        if (ActiveCubes.Count > MaxCubes) return;
-        if (ActiveCubes.Count == 0) return;
-        foreach (var cubePair in ActiveCubes)
+        if (FertilityMap.Count > MaxCubes) return;
+        if (FertilityMap.Count == 0) return;
+        foreach (var cubePair in FertilityMap)
         {
             if(cubePair.Value == gameOfLifeSurviveValue) Cubes.Add(cubePair.Key);
         }
@@ -27,17 +26,17 @@ public class DictionaryConwayCubesData : MonoBehaviour
 
     public void CalculateActiveCubes()
     {
-        ActiveCubes.Clear();
+        FertilityMap.Clear();
         if (Cubes.Count == 0) return;
         foreach (var cube in Cubes)
         {
             foreach (var cubeNeighbor in GetNeighborsKeys(cube))
             {
-                if (ActiveCubes.ContainsKey(cube)) ActiveCubes[cube]++;
-                else ActiveCubes.Add(cube, 1);
+                if (FertilityMap.ContainsKey(cube)) FertilityMap[cube]++;
+                else FertilityMap.Add(cube, 1);
             }
         }
-        NumberOfCubes = ActiveCubes.Count;
+        NumberOfCubes = FertilityMap.Count;
     }
     public void SetCube(Vector3 cube)
     {
