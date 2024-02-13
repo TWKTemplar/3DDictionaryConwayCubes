@@ -17,7 +17,6 @@ public class DictionaryConwayCubes : MonoBehaviour
     [Header("Colors")]
     public Color StartingColor = Color.white;
     public Color EndingColor = Color.red;
-    public Color NonFertileDebugImageColor = Color.white;
     [Header("Settings")]    
     public int GameOfLifeSurviveValue = 4;
     public int MaxCubes = 50000;
