@@ -13,13 +13,8 @@ public class DictionaryConwayCubesEditor : Editor
         {
             DconwayCubes.ClearDictionary();
         }
-        if (GUILayout.Button("Spawn Random In Dictionary"))
-        {
-            DconwayCubes.SpawnRandom();
-        }
-        if (GUILayout.Button("Step"))
-        {
-            DconwayCubes.Step();
-        }
+
+        if (GUILayout.Button("New Generation")) DconwayCubes.Step();
+
     }
 }

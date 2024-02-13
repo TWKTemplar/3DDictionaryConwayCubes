@@ -15,8 +15,12 @@ public class DictionaryConwayCubesData : MonoBehaviour
     public void ApplyRulesToCubes(int gameOfLifeSurviveValue, int MaxCubes = 50000)
     {
         Cubes.Clear();
-        if (FertilityMap.Count > MaxCubes) return;
-        if (FertilityMap.Count == 0) return;
+        if (FertilityMap.Count > MaxCubes) FertilityMap.Clear();
+        if (FertilityMap.Count == 0)
+        {
+            NumberOfCubes = 0;
+            return;
+        }
         foreach (var cubePair in FertilityMap)
         {
             if(cubePair.Value == gameOfLifeSurviveValue) Cubes.Add(cubePair.Key);
@@ -24,7 +28,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
 
     }
 
-    public void CalculateActiveCubes()
+    public void CalculateFertilityMap()
     {
         FertilityMap.Clear();
         if (Cubes.Count == 0) return;
@@ -42,7 +46,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         if (!Cubes.Contains(cube)) Cubes.Add(cube);
     }
-    public void ClearCubesDictionary()
+    public void ClearCubes()
     {
         Cubes.Clear();
     }

@@ -17,8 +17,8 @@ public class DictionaryConwayCubes : MonoBehaviour
     [Header("Colors")]
     public Color StartingColor = Color.white;
     public Color EndingColor = Color.red;
-
-    [Header("Settings")]
+    public Color NonFertileDebugImageColor = Color.white;
+    [Header("Settings")]    
     public int GameOfLifeSurviveValue = 4;
     public int MaxCubes = 50000;
     public bool GizmosDrawCubes = true;
@@ -30,15 +30,12 @@ public class DictionaryConwayCubes : MonoBehaviour
     public void Step()
     {
         if (data.Cubes.Count == 0) SpawnRandom();
-        else
-        {
-            data.ApplyRulesToCubes(GameOfLifeSurviveValue, MaxCubes);
-            OnDictionaryChange();
-        }
+        else data.ApplyRulesToCubes(GameOfLifeSurviveValue, MaxCubes);
+        OnDictionaryChange();
     }
     public void ClearDictionary()
     {
-        data.ClearCubesDictionary();
+        data.ClearCubes();
         OnDictionaryChange();
     }
     public void SpawnRandom()
@@ -55,7 +52,7 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     public void OnDictionaryChange()
     {
-        data.CalculateActiveCubes();
+        data.CalculateFertilityMap();
         if(ShowBounds) data.CalculateBounds();
     }
     private void OnDrawGizmos()
@@ -79,6 +76,8 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     private void DrawNumber(Vector3 pos, int num)
     {
+        Gizmos.color = Color.white;
+       // if(GameOfLifeSurviveValue == num) Gizmos.color = NonFertileDebugImageColor;
         Gizmos.DrawIcon(pos, num.ToString() + ".png", true);
     }
 }

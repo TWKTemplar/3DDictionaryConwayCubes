@@ -347,12 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81db802009a4843906fc7552598e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfCubes: 0
+  NumberOfCubes: 70
   Bounds:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -7, y: -6, z: -7}
+  - {x: 6, y: 7, z: 6}
+  - {x: -0.5, y: 0.5, z: -0.5}
+  - {x: 13, y: 13, z: 13}
 --- !u!114 &1724338624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,12 +368,12 @@ MonoBehaviour:
   data: {fileID: 1724338623}
   StartingColor: {r: 1, g: 1, b: 1, a: 1}
   EndingColor: {r: 1, g: 0, b: 0, a: 1}
+  NonFertileDebugImageColor: {r: 1, g: 1, b: 1, a: 1}
   GameOfLifeSurviveValue: 4
   MaxCubes: 50000
   GizmosDrawCubes: 1
   ShowDebug: 1
   ShowBounds: 1
-  MoveEmptyToBounds: 0
   RandomSpawnRange: 5
 --- !u!114 &1724338625
 MonoBehaviour:
