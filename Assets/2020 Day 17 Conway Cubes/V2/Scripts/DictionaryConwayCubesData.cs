@@ -69,6 +69,31 @@ public class DictionaryConwayCubesData : MonoBehaviour
     {
         Cubes.Clear();
     }
+    
+    public Vector3[] GetNeighborsKeys(Vector3 cube)
+    {
+        Vector3[] n = new Vector3[27];//9+9+9
+        Vector3 vec = Vector3.zero;
+        //Version 1
+        int i = 0;
+        for (int x = -1; x != 2; x++)
+        {
+            for (int y = -1; y != 2; y++)
+            {
+                for (int z = -1; z != 2; z++)
+                {
+                    vec = cube;
+                    vec.x += x;
+                    vec.y += y;
+                    vec.z += z;
+                    n[i] = vec;
+                    i++;
+                }
+            }
+        }
+        return n;
+    }
+    #region Debug Only
     public void CalculateBounds()// 0 Min, 1, Max, 2 Avg, 3 Range
     {
         if (Cubes.Count != 0)
@@ -93,29 +118,7 @@ public class DictionaryConwayCubesData : MonoBehaviour
             Bounds[3] = Vector3.zero;
         }
     }
-    public Vector3[] GetNeighborsKeys(Vector3 cube)
-    {
-        Vector3[] n = new Vector3[27];//9+9+9
-        Vector3 vec = Vector3.zero;
-        //Version 1
-        int i = 0;
-        for (int x = -1; x != 2; x++)
-        {
-            for (int y = -1; y != 2; y++)
-            {
-                for (int z = -1; z != 2; z++)
-                {
-                    vec = cube;
-                    vec.x += x;
-                    vec.y += y;
-                    vec.z += z;
-                    n[i] = vec;
-                    i++;
-                }
-            }
-        }
-        return n;
-    }
+    #endregion
 
     #region Math spam
     private Vector3 AverageVector3(Vector3 a, Vector3 b)
