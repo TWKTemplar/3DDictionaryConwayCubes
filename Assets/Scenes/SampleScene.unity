@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d5eff06ed5e9d9843a1f5ce6f26974e8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cbdc6106b230de14a8d23f080b731e2c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465829, g: 0.49641728, b: 0.57482105, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -347,12 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81db802009a4843906fc7552598e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfCubes: 70
+  NumberOfCubes: 406
   Bounds:
-  - {x: -7, y: -6, z: -7}
-  - {x: 6, y: 7, z: 6}
-  - {x: -0.5, y: 0.5, z: -0.5}
-  - {x: 13, y: 13, z: 13}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!114 &1724338624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,9 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 1724338623}
-  StartingColor: {r: 1, g: 1, b: 1, a: 1}
-  EndingColor: {r: 1, g: 0, b: 0, a: 1}
-  NonFertileDebugImageColor: {r: 1, g: 1, b: 1, a: 1}
+  StartingColor: {r: 0.52156866, g: 0.94509804, b: 0.9019608, a: 1}
+  EndingColor: {r: 0, g: 0, b: 0, a: 1}
   GameOfLifeSurviveValue: 4
   MaxCubes: 50000
   GizmosDrawCubes: 1
