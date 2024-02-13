@@ -63,7 +63,6 @@ public class DictionaryConwayCubes : MonoBehaviour
             Gizmos.color = Color.Lerp(StartingColor, EndingColor, Mathf.Clamp(lerpColor, 0,1)) ;
 
             if(GizmosDrawCubes) foreach (Vector3 cub in data.Cubes) Gizmos.DrawCube(cub, Vector3.one);
-            Gizmos.color = Color.white;
             if(ShowDebug) foreach (var keyPair in data.FertilityMap) DrawNumber(keyPair.Key, keyPair.Value);
 
             Gizmos.color = Color.green;
@@ -76,8 +75,6 @@ public class DictionaryConwayCubes : MonoBehaviour
     }
     private void DrawNumber(Vector3 pos, int num)
     {
-        Gizmos.color = Color.white;
-       // if(GameOfLifeSurviveValue == num) Gizmos.color = NonFertileDebugImageColor;
         Gizmos.DrawIcon(pos, num.ToString() + ".png", true);
     }
 }
